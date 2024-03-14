@@ -245,4 +245,53 @@ $(function () {
     },
   };
   new ApexCharts(document.querySelector("#earning"), earning).render();
+
+  // =====================================
+  // Earning2
+  // =====================================
+  var earning2 = {
+    chart: {
+      id: "sparkline3",
+      type: "line",
+      height: 300,
+      color: 'black',
+      // sparkline: {
+      //   enabled: true,
+      // },
+      group: "sparklines",
+      fontFamily: "Plus Jakarta Sans', sans-serif",
+      foreColor: "#adb0bb",
+    },
+    series: [
+      {
+        name: "Earnings",
+        color: "black",
+        data: [25, 66, 20, 40, 12, 58, 20],
+      },
+    ],
+    stroke: {
+      curve: "smooth",
+      width: 2,
+    },
+    fill: {
+      colors: ["#ffffff"],
+      type: "solid",
+    },
+
+    markers: {
+      size: 0,
+    },
+    tooltip: {
+      theme: "dark",
+      fixed: {
+        enabled: true,
+        position: "right",
+      },
+      x: {
+        show: true,
+      },
+    },
+  };
+  new ApexCharts(document.querySelector("#earning2"), earning2).render();
 })
+
