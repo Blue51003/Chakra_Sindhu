@@ -19,7 +19,11 @@ $(function () {
   fetchJSONData()
   .then(series => {
   
+  fetchJSONData()
+  .then(series => {
+  
   // =====================================
+  // Time Series Wind Speed Main
   // Time Series Wind Speed Main
   // =====================================
 
@@ -65,6 +69,8 @@ $(function () {
         style: {
           color: '#000',
           background: 'red',
+          color: '#000',
+          background: 'red',
         },
         text: 'Cut-out',
       }
@@ -89,9 +95,11 @@ $(function () {
   };
 
   var chart = new ApexCharts(document.querySelector("#wind_speed_main"), wind_speed_main);
+  var chart = new ApexCharts(document.querySelector("#wind_speed_main"), wind_speed_main);
   chart.render();
 
   // =====================================
+  // Time Series Wind Direction Main
   // Time Series Wind Direction Main
   // =====================================
 
@@ -123,7 +131,17 @@ $(function () {
   };
 
   var chart = new ApexCharts(document.querySelector("#wind_dir_main"), wind_dir_main);
+  var chart = new ApexCharts(document.querySelector("#wind_dir_main"), wind_dir_main);
   chart.render();
+      // Now you can use the 'series' variable in this function
+      console.log(series); // Just to verify if the data is loaded correctly
+      // Call any other function or perform operations with 'series' here
+  })
+  .catch(error => {
+      // Handle errors here
+      console.error('Error:', error);
+  });
+
       // Now you can use the 'series' variable in this function
       console.log(series); // Just to verify if the data is loaded correctly
       // Call any other function or perform operations with 'series' here
