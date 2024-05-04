@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wind Data Dashboard</title>
+  <link rel="shortcut icon" type="image/png" href="src/assets/images/logos/windmill.png" />
+  <link rel="stylesheet" href="src/assets/css/styles.min.css" />
+  <link rel="stylesheet" href="src/assets/css/style_other.css">
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="src/assets/images/logos/windmill.png" width="28" alt="" /><h3 style="display: inline; color: black"><b>CHAKRA SINDHU</b></h3>
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar=""><br>
+          <ul id="sidebarnav">
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="index.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Dashboard</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="src/html/wind_speed.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-file-description"></i>
+                </span>
+                <span class="hide-menu">Wind Speed Data</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="src/html/wind_direction.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-settings"></i>
+                </span>
+                <span class="hide-menu">Wind Direction Data</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="src/html/about.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-user"></i>
+                </span>
+                <span class="hide-menu">About Team</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li class="nav-item d-block d-xl-none">
+              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                <i class="ti ti-menu-2"></i>
+              </a>
+            </li>
+          </ul>
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="src/assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">My Profile</p>
+                    </a>
+                    <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!--  Header End -->
+      <div class="container-fluid">
+        <!--  Graphs -->
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="card w-100">
+              <div class="card-body">
+                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                  <div class="mb-3 mb-sm-0">
+                    <h5 class="card-title fw-semibold">Wind Speed Data</h5>
+                  </div>
+                  <div>
+                    <select class="form-select">
+                      <option value="1">March 2023</option>
+                      <option value="2">April 2023</option>
+                      <option value="3">May 2023</option>
+                      <option value="4">June 2023</option>
+                    </select>
+                  </div>
+                </div>
+                <div id="wind_speed_main"></div>
+                <!-- <div id="chart"></div> -->
+              </div>
+            </div>
+            <div class="card w-100">
+              <div class="card-body">
+                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                  <div class="mb-3 mb-sm-0">
+                    <h5 class="card-title fw-semibold">Wind Direction Data</h5>
+                  </div>
+                  <div>
+                    <select class="form-select">
+                      <option value="1">March 2023</option>
+                      <option value="2">April 2023</option>
+                      <option value="3">May 2023</option>
+                      <option value="4">June 2023</option>
+                    </select>
+                  </div>
+                </div>
+                <div id="wind_dir_main"></div>
+                <!-- <div id="chart"></div> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="row">
+              <div class="col-lg-12">
+                <!-- WIND DIRECTION WITH COMPASS -->
+                <div class="card overflow-hidden">
+                  <div class="card-body p-4">
+                    <h5 class="card-title mb-9 fw-semibold">Wind Direction Compass</h5>
+                    <div class="row align-items-center">
+                      <div class="col-8">
+                        <h4 class="fw-semibold mb-3">Wind: 120°</h4>
+                        <h4 class="fw-semibold mb-3">Nacelle: 120°</h4>
+                      </div>
+                      <div class="col-4">
+                        <div class="d-flex justify-content-center">
+                          <div id="breakup"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <!-- WIND SPEED GRAPH ANNOTATIONS -->
+                <div class="card overflow-hidden">
+                  <div class="card-body p-4">
+                    <h5 class="card-title mb-9 fw-semibold">Graph Parameter Values</h5>
+                    <div class="row align-items-center">
+                      <div class="col-8">
+                        <h4 class="fw-semibold mb-3" style="color: green; font-size: 1rem;">CUT-IN: 1.3</h4>
+                        <h4 class="fw-semibold mb-3" style="color: blue; font-size: 1rem;">RATED 4.2</h4>
+                        <h4 class="fw-semibold mb-3" style="color: red; font-size: 1rem;">CUT-OUT 9.0</h4>
+                      </div>
+                      <div class="col-4">
+                        <div class="d-flex justify-content-center">
+                          <div id="breakup"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <!-- Present Wind Speed -->
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row alig n-items-start">
+                      <div class="col-8">
+                        <h5 class="card-title mb-9 fw-semibold"> Present Wind Speed </h5>
+                        <h4 class="fw-semibold mb-3">5.22 m/s</h4>
+                        <div class="d-flex align-items-center pb-1">
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="d-flex justify-content-end">
+                          <div
+                            class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-wind fs-6"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <!-- EMPTY -->
+                <div class="card" style="height: 247px;">
+                  <div class="card-body">
+                    <div class="row alig n-items-start">
+                      <div class="col-8" style="vertical-align: middle;">
+                        <center><img src="src/assets/images/logos/windmill.png" style="width: 150px;" /></center>
+                        <div class="d-flex align-items-center pb-1">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+<div class="row">
+          <div class="col-sm-6 col-xl-3">
+            <div class="card overflow-hidden rounded-2">
+              <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">Main Shaft RPM</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                  <h6 class="fw-semibold fs-4 mb-0" style="color: red;">20 RPM</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="card overflow-hidden rounded-2">
+              <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">Wind Turbine Status</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                  <h6 class="fw-semibold fs-4 mb-0" style="color: red;">OFF</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="card overflow-hidden rounded-2">
+              <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">Brake Status</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                  <h6 class="fw-semibold fs-4 mb-0" style="color: red;"><div></div></h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="card overflow-hidden rounded-2">
+              <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">Power</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                  <h6 class="fw-semibold fs-4 mb-0" style="color: red;">3000 W</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          
+    <!-- Controls Wrapper Start -->
+  <!--IOT PANEL START-->
+        <div class="col-sm-6 col-xl-3" style="width: 25% !important;">
+          <div class="card overflow-hidden rounded-2" style=" height: 500px;">
+            <div class="card-body pt-3 p-4"><br>
+              <h6 class="fw-semibold fs-4">IOT CONTROL PANEL</h6><br>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="card overflow-hidden rounded-2" style="width: 100%;">
+                  <div class="card-body pt-3 p-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <h6 class="fw-semibold fs-4 mb-0" style="color: red; padding-right: 20px;">MAIN M/C</h6>
+                      <label class="switch">
+                        <input type="checkbox" id="mainmc">
+                        <span class="slider round"></span>
+                      </label>
+                    </div><br>
+                    <div class="d-flex align-items-center justify-content-between">
+                      <h6 class="fw-semibold fs-4 mb-0" style="color: red;">BRAKE</h6>
+                      <label class="switch">
+                        <input type="checkbox" id="brake">
+                        <span class="slider round"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="card overflow-hidden rounded-2" style="width: 100%;">
+                  <div class="card-body pt-3 p-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <h6 class="fw-semibold fs-4 mb-0" style="color: red; padding-right: 20px;">YAW MOTOR</h6>
+                      <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider round"></span>
+                      </label>
+                    </div><br>
+                    <form>
+                    <div class="d-flex align-items-center justify-content-between">
+                      <h6 class="fw-semibold fs-4 mb-0" style="color: red; padding-right: 20px;">YAW DIRECTION</h6>
+                      <select>
+                        <option value="0">CW</option>
+                        <option value="1">ACW</option>
+                      </select>
+                    </div><br>
+                    <div class="d-flex align-items-center justify-content-between">
+                      <h6 class="fw-semibold fs-4 mb-0" style="color: red;">ANGLE (DEG°)</h6>
+                      <input class style="width: 50px;" />
+                    </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <h6 class="fw-semibold fs-4">USER: XXXX</h6><br>
+              <div></div>
+            </div>
+          </div>
+        </div>
+<!--IOT PANEL END-->
+
+<!--Display-->
+        <div class="col-sm-6 col-xl-3" style="width: 75% !important;">
+          <div class="card overflow-hidden rounded-2" style=" height: 500px;">
+            <div class="card-body pt-3 p-4"><br><br><br>
+              <center><h6 class="fw-semibold fs-4">TURBINE STATUS: <div style="display: inline;">OFF</div></h6></center><br>
+              <div class="d-flex align-items-center justify-content-between">
+
+                <div class="col-sm-6 col-xl-3" style="width: 16.67% !important;">
+                  <div class="card overflow-hidden rounded-2" style="height: 150px;">
+                    <div class="card-body pt-3 p-4">
+                      <center><h6 class="fw-semibold fs-4">MAIN M/C</h6></center><br>
+                        <h6 style="text-align: center; color: red; padding-top: 35px;"><b>OFF</b></h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3" style="width: 16.67% !important;">
+                  <div class="card overflow-hidden rounded-2" style="height: 150px;">
+                    <div class="card-body pt-3 p-4">
+                      <center><h6 class="fw-semibold fs-4">BRAKE</h6></center><br>
+                        <h6 style="text-align: center; color: red; padding-top: 35px;"><b>OFF</b></h6> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3" style="width: 16.67% !important;">
+                  <div class="card overflow-hidden rounded-2" style="height: 150px;">
+                    <div class="card-body pt-3 p-4">
+                      <center><h6 class="fw-semibold fs-4">RPM IRE READING</h6></center><br>
+                        <h6 style="text-align: center; color: red; padding-top: 20px;"><b>OFF</b></h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3" style="width: 16.67% !important;">
+                  <div class="card overflow-hidden rounded-2" style="height: 150px;">
+                    <div class="card-body pt-3 p-4">
+                      <center><h6 class="fw-semibold fs-4">MAIN SHAFT RPM</h6></center><br>
+                        <h6 style="text-align: center; color: red; padding-top: 3px;"><b>OFF</b></h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3" style="width: 16.67% !important;">
+                  <div class="card overflow-hidden rounded-2" style="height: 150px;">
+                    <div class="card-body pt-3 p-4">
+                      <center><h6 class="fw-semibold fs-4">MAIN M/C RPM</h6></center><br>
+                        <h6 style="text-align: center; color: red; padding-top: 20px;"><b>OFF</b></h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3" style="width: 16.67% !important;">
+                  <div class="card overflow-hidden rounded-2" style="height: 150px;">
+                    <div class="card-body pt-3 p-4">
+                      <center><h6 class="fw-semibold fs-4">ACTION</h6></center><br>
+                        <h6 style="text-align: center; color: red; padding-top: 30px;"><b>OFF</b></h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <div class="d-flex align-items-center justify-content-between">
+
+              <div class="col-sm-6 col-xl-3" style="width: 33% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 100px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4" style="color: blue">PARKED</h6></center><br>
+                      <h6 style="text-align: center;"><b>Main m/c OFF, BRAKE ON</b></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xl-3" style="width: 33% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 100px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4" style="color: rgb(0, 221, 0);">WORKING</h6></center><br>
+                      <h6 style="text-align: center;"><b>Main m/c ON, BRAKE OFF</b></h6> 
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xl-3" style="width: 33% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 100px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4" style="color: red">OVERSPEED</h6></center><br>
+                      <h6 style="text-align: center;"><b>RPM IRE reading > 84</b></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+<!--Display end-->
+
+<!--3rd box-->
+      <div class="row">
+      <div class="col-sm-6 col-xl-3" style="width: 50% !important;">
+        <div class="card overflow-hidden rounded-2">
+          <div class="card-body pt-3 p-4"><br><br>
+            <div class="d-flex align-items-center justify-content-between">
+
+              <div class="col-sm-6 col-xl-3" style="width: 25% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 120px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4">GRID</h6></center><br>
+                      <h6 style="text-align: center; color: red;"><b>ON/OFF</b></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xl-3" style="width: 25% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 120px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4">INVERTER</h6></center><br>
+                      <h6 style="text-align: center; color: red;"><b>ON/OFF</b></h6> 
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xl-3" style="width: 25% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 120px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4">POWER (W)</h6></center><br>
+                      <h6 style="text-align: center; color: red;"><b>+ve/-ve</b></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xl-3" style="width: 25% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 120px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4">POWER FACTOR</h6></center><br>
+                      <h6 style="text-align: center; color: red;"><b></b></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between">
+
+              <div class="col-sm-6 col-xl-3" style="width: 25% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 120px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4">VOLTAGE</h6></center><br>
+                      <h6 style="text-align: center; color: red;"><b></b></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xl-3" style="width: 25% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 120px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4">CURRENT</h6></center><br>
+                      <h6 style="text-align: center; color: red;"><b></b></h6> 
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xl-3" style="width: 25% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 120px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4">TRIPPING CURRENT</h6></center><br>
+                      <h6 style="text-align: center; color: red;"><b>1.24A</b></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xl-3" style="width: 25% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 120px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4">TRIPPING RPM</h6></center><br>
+                      <h6 style="text-align: center; color: red;"><b>1620</b></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      </div>
+<!--3rd box end-->
+
+<!--4th box-->
+      <div class="col-sm-6 col-xl-3" style="width: 50% !important;">
+        <div class="card overflow-hidden rounded-2">
+          <div class="card-body pt-3 p-4">
+            <center><h6 class="fw-semibold fs-4">ATTENTION PROTOCOL #4 (Normal weather yaw) Activated</h6></center><br>
+            <div class="d-flex align-items-center justify-content-between">
+
+              <div class="col-sm-6 col-xl-3" style="width: 25% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 120px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4">GRID</h6></center><br>
+                      <h6 style="text-align: center; color: red;"><b>ON/OFF</b></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xl-3" style="width: 25% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 120px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4">INVERTER</h6></center><br>
+                      <h6 style="text-align: center; color: red;"><b>ON/OFF</b></h6> 
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xl-3" style="width: 25% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 120px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4">POWER (W)</h6></center><br>
+                      <h6 style="text-align: center; color: red;"><b>+ve/-ve</b></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xl-3" style="width: 25% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 120px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4">POWER FACTOR</h6></center><br>
+                      <h6 style="text-align: center; color: red;"><b></b></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between">
+
+              <div class="col-sm-6 col-xl-3" style="width: 25% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 120px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4">VOLTAGE</h6></center><br>
+                      <h6 style="text-align: center; color: red;"><b></b></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xl-3" style="width: 25% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 120px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4">CURRENT</h6></center><br>
+                      <h6 style="text-align: center; color: red;"><b></b></h6> 
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xl-3" style="width: 25% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 120px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4">TRIPPING CURRENT</h6></center><br>
+                      <h6 style="text-align: center; color: red;"><b>1.24A</b></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xl-3" style="width: 25% !important;">
+                <div class="card overflow-hidden rounded-2" style="height: 120px;">
+                  <div class="card-body pt-3 p-4">
+                    <center><h6 class="fw-semibold fs-4">TRIPPING RPM</h6></center><br>
+                      <h6 style="text-align: center; color: red;"><b>1620</b></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      </div>
+      <!--4th box end-->
+    </div>
+
+      </div>
+    </div>
+  </div>
+  <div>
+
+  </div> 
+      <!-- Controls Wrapper End -->
+
+
+
+  <script src="src/assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="src/assets/js/sidebarmenu.js"></script>
+  <script src="src/assets/js/app.min.js"></script>
+  <script src="src/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="src/assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="src/assets/js/dashboard.js"></script>
+  <script src="src/assets/js/main.js"></script>
+</body>
+
+</html>
